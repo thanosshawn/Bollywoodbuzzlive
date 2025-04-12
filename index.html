@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bollywood Buzz Live</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #ffdde1, #ee9ca7);
+      color: #333;
+      animation: fadeIn 1s ease forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    header {
+      background: linear-gradient(90deg, #e50914, #ff512f);
+      color: white;
+      padding: 15px 25px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .container {
+      display: grid;
+      gap: 20px;
+      padding: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      max-width: 1200px;
+      margin: auto;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      animation: slideUp 0.8s ease forwards;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .battle img, .sighting img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .battle, .sighting, .sentiment, .trailer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed #ddd;
+    }
+    .highlight {
+      font-weight: bold;
+      color: #e50914;
+    }
+    .growth-bar {
+      width: 100%;
+      height: 8px;
+      border-radius: 5px;
+      background: linear-gradient(90deg, #e50914, #f9c80e);
+      animation: grow 2s infinite alternate ease-in-out;
+    }
+    @keyframes grow {
+      0% { transform: scaleX(0.6); }
+      100% { transform: scaleX(1); }
+    }
+  </style>
+</head>
+<body><header>Bollywood Buzz Live — Real-Time Tracker</header><div class="container">  <div class="card">
+    <h2>Celebrity Engagement Battle</h2>
+    <div class="battle">
+      <img src="https://i.imgur.com/6RLxi7U.jpg" alt="SRK">
+      <div id="celeb1">Shah Rukh Khan<br><span class="highlight">❤️ 2.3M Likes</span><br>💬 47K Comments</div>
+      <div class="growth-bar"></div>
+      <div>
+        <img src="https://i.imgur.com/8Km9tLL.jpg" alt="Salman">
+        <div id="celeb2">Salman Khan<br><span class="highlight">❤️ 2.1M Likes</span><br>💬 51K Comments</div>
+      </div>
+    </div>
+  </div>  <div class="card">
+    <h2>Live Paparazzi Sightings</h2>
+    <div class="sighting" id="sighting1">
+      <img src="https://i.imgur.com/M5pKfvH.jpg" alt="Alia Bhatt">
+      <div>Alia Bhatt spotted at Bandra Café<br><span class="highlight">2 min ago</span></div>
+    </div>
+    <div class="sighting" id="sighting2">
+      <img src="https://i.imgur.com/4AiXzf8.jpg" alt="Ranbir Kapoor">
+      <div>Ranbir Kapoor at Mumbai Airport<br><span class="highlight">10 min ago</span></div>
+    </div>
+  </div>  <div class="card">
+    <h2>Trailer vs Song Popularity</h2>
+    <div class="trailer" id="trailerRace">
+      <div>Movie A Trailer<br>Views: <span class="highlight" id="trailerViews">10M</span></div>
+      <div class="growth-bar"></div>
+      <div>Movie B Song<br>Views: <span class="highlight" id="songViews">8.5M</span></div>
+    </div>
+  </div>  <div class="card">
+    <h2>Celebrity Sentiment Radar</h2>
+    <div class="sentiment" id="sentiment1">Positive: Shah Rukh Khan — <span class="highlight">89%</span></div>
+    <div class="sentiment" id="sentiment2">Positive: Alia Bhatt — <span class="highlight">84%</span></div>
+    <div class="sentiment" id="sentiment3">Negative: Actor X — <span class="highlight">63%</span></div>
+    <div class="sentiment" id="sentiment4">Negative: Actress Y — <span class="highlight">51%</span></div>
+  </div></div><script>
+  // Fake live updates
+  setInterval(() => {
+    let likes1 = Math.floor(2.3 * 1000000 + Math.random() * 10000);
+    let comments1 = Math.floor(47000 + Math.random() * 200);
+    let likes2 = Math.floor(2.1 * 1000000 + Math.random() * 15000);
+    let comments2 = Math.floor(51000 + Math.random() * 200);
+
+    document.getElementById("celeb1").innerHTML = `Shah Rukh Khan<br><span class="highlight">❤️ ${likes1.toLocaleString()} Likes</span><br>💬 ${comments1.toLocaleString()} Comments`;
+    document.getElementById("celeb2").innerHTML = `Salman Khan<br><span class="highlight">❤️ ${likes2.toLocaleString()} Likes</span><br>💬 ${comments2.toLocaleString()} Comments`;
+
+    let tViews = (10 + Math.random()).toFixed(1);
+    let sViews = (8.5 + Math.random()).toFixed(1);
+    document.getElementById("trailerViews").innerText = `${tViews}M`;
+    document.getElementById("songViews").innerText = `${sViews}M`;
+
+    let pos1 = 85 + Math.floor(Math.random() * 10);
+    let pos2 = 80 + Math.floor(Math.random() * 15);
+    let neg1 = 55 + Math.floor(Math.random() * 20);
+    let neg2 = 45 + Math.floor(Math.random() * 20);
+
+    document.getElementById("sentiment1").innerHTML = `Positive: Shah Rukh Khan — <span class="highlight">${pos1}%</span>`;
+    document.getElementById("sentiment2").innerHTML = `Positive: Alia Bhatt — <span class="highlight">${pos2}%</span>`;
+    document.getElementById("sentiment3").innerHTML = `Negative: Actor X — <span class="highlight">${neg1}%</span>`;
+    document.getElementById("sentiment4").innerHTML = `Negative: Actress Y — <span class="highlight">${neg2}%</span>`;
+
+  }, 2500);
+</script></body>
+</html>
